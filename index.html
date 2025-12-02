@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Fran Ribeiro App</title>
+    <title>Fran Ribeiro - App</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,15 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
-        /* --- CSS VARS & RESET --- */
+        /* --- CONFIGURAÇÕES VISUAIS (TEMA) --- */
         :root {
-            --app-bg: #121214;
-            --surface-color: #202024;
-            --surface-active: #29292e;
-            --primary-gradient: linear-gradient(135deg, #FFC107, #FF8F00);
-            --text-main: #E1E1E6;
-            --text-muted: #A8A8B3;
-            --gold: #FFC107;
+            --app-bg: #121214; /* Fundo principal */
+            --surface: #202024; /* Cor dos cards */
+            --primary: #FFD700; /* Dourado principal */
+            --primary-gradient: linear-gradient(135deg, #FFD700, #FF8F00);
+            --text-main: #FFFFFF;
+            --text-muted: #A1A1AA;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -28,11 +27,11 @@
             background-color: var(--app-bg);
             color: var(--text-main);
             font-family: 'Poppins', sans-serif;
-            padding-bottom: 90px; /* Espaço para o botão flutuante */
+            padding-bottom: 100px; /* Espaço para o botão flutuante */
         }
 
-        /* --- APP HEADER (FIXO) --- */
-        .app-header {
+        /* --- CABEÇALHO --- */
+        header {
             position: fixed;
             top: 0; left: 0; right: 0;
             height: 60px;
@@ -42,306 +41,340 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
-            z-index: 1000;
+            z-index: 100;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        .logo { font-weight: 700; font-size: 1.2rem; }
+        .logo span { color: var(--primary); }
+        .menu-icon { font-size: 1.5rem; cursor: pointer; }
 
-        .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
-        .logo span { color: var(--gold); }
-
-        .menu-btn { font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
-
-        /* --- MENU LATERAL (HIDDEN) --- */
-        .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 1001;
-        }
-        .sidebar-overlay.active { opacity: 1; visibility: visible; }
-
-        .sidebar {
-            position: fixed;
-            top: 0; right: 0; bottom: 0;
-            width: 75%;
-            max-width: 300px;
-            background: var(--surface-color);
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1002;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
-        }
-        .sidebar.active { transform: translateX(0); }
-
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .close-btn { font-size: 1.5rem; color: var(--text-muted); }
-
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 10px;
-            border-radius: 10px;
-            transition: 0.2s;
-        }
-        .menu-link:active { background: var(--surface-active); }
-        .menu-link i { color: var(--gold); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            margin-top: 80px; /* Compensar header */
-            padding: 0 20px;
+        /* --- HERO (PERFIL) --- */
+        .hero-section {
+            margin-top: 80px;
             text-align: center;
-            margin-bottom: 30px;
+            padding: 20px;
         }
-        .avatar {
-            width: 90px; height: 90px;
+        .profile-pic {
+            width: 100px; height: 100px;
             border-radius: 50%;
-            border: 3px solid var(--gold);
+            border: 3px solid var(--primary);
             padding: 3px;
             object-fit: cover;
-            margin-bottom: 15px;
-        }
-        .hero h2 { font-size: 1.4rem; font-weight: 600; }
-        .hero p { color: var(--text-muted); font-size: 0.9rem; }
-
-        /* --- LISTA DE SERVIÇOS (APP STYLE) --- */
-        .section-title {
-            padding: 0 20px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            margin-top: 20px;
-        }
-
-        .services-wrapper {
-            padding: 0 20px;
-        }
-
-        .category-group { margin-bottom: 25px; }
-
-        /* Estilo do Item como Card */
-        .service-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--surface-color);
-            padding: 16px;
-            border-radius: 16px;
             margin-bottom: 10px;
-            transition: transform 0.2s;
-            border: 1px solid rgba(255,255,255,0.02);
         }
-        
-        .service-card:active {
-            background: var(--surface-active);
-            transform: scale(0.98);
-        }
-
-        .service-info { display: flex; flex-direction: column; gap: 4px; }
-        .s-name { font-weight: 500; font-size: 1rem; }
-        .s-desc { font-size: 0.75rem; color: var(--text-muted); }
-
-        .price-badge {
-            background: rgba(255, 193, 7, 0.15);
-            color: var(--gold);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            white-space: nowrap;
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.1);
+            color: #4ade80;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
         }
 
-        /* --- GALERIA (SCROLL HORIZONTAL) --- */
-        .gallery-scroll {
+        /* --- TÍTULOS DE SEÇÃO --- */
+        .section-header {
+            padding: 20px 20px 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-header h2 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+        .section-header i { color: var(--primary); }
+
+        /* --- SERVIÇOS DETALHADOS (CARDS) --- */
+        .services-container { padding: 0 20px; display: flex; flex-direction: column; gap: 15px; }
+
+        .service-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
             display: flex;
             gap: 15px;
-            overflow-x: auto;
-            padding: 0 20px 20px 20px;
-            scroll-snap-type: x mandatory;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.2s;
         }
-        .gallery-scroll::-webkit-scrollbar { display: none; }
-        
-        .gallery-item {
-            min-width: 250px;
-            height: 150px;
-            border-radius: 16px;
-            overflow: hidden;
-            scroll-snap-align: center;
-            position: relative;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .service-card:active { transform: scale(0.98); background: #2a2a30; }
 
-        /* --- BOTÃO FLUTUANTE (FAB) --- */
-        .bottom-cta {
+        .icon-box {
+            width: 50px; height: 50px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .card-details { flex: 1; }
+        .card-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+        .card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px; }
+        .card-meta { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--text-muted); }
+        
+        .price-tag {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* --- GALERIA (GRID) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+            gap: 10px;
+            padding: 0 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 1 / 1; /* Quadrado perfeito */
+            background: #333;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .gallery-item:active img { transform: scale(1.1); }
+
+        /* --- LIGHTBOX (MODAL DE FOTO) --- */
+        .lightbox {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: var(--primary-gradient);
-            color: #000;
-            font-weight: 600;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(255, 193, 7, 0.25);
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            z-index: 900;
-            font-size: 1.05rem;
-            transition: transform 0.2s;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            padding: 20px;
         }
-        .bottom-cta:active { transform: scale(0.95); }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px; right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
 
+        /* --- BOTÃO FLUTUANTE --- */
+        .fab-btn {
+            position: fixed;
+            bottom: 20px; left: 20px; right: 20px;
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            z-index: 900;
+        }
     </style>
 </head>
 <body>
 
-    <header class="app-header">
+    <header>
         <div class="logo">Studio <span>Fran</span></div>
-        <div class="menu-btn" onclick="toggleMenu()">
-            <i class="ri-menu-4-line"></i> </div>
-    </header>
+        <i class="ri-menu-4-line menu-icon"></i> </header>
 
-    <div class="sidebar-overlay" onclick="toggleMenu()"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <span class="logo">Menu</span>
-            <div class="close-btn" onclick="toggleMenu()"><i class="ri-close-line"></i></div>
-        </div>
-        <nav>
-            <a href="#" class="menu-link"><i class="ri-home-line"></i> Início</a>
-            <a href="#" class="menu-link"><i class="ri-scissors-cut-line"></i> Serviços</a>
-            <a href="#" class="menu-link"><i class="ri-image-line"></i> Galeria</a>
-            <a href="https://wa.me/5568999140967" class="menu-link"><i class="ri-whatsapp-line"></i> Contato</a>
-        </nav>
+    <div class="hero-section">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=200&auto=format&fit=crop" class="profile-pic">
+        <h3>Fran Ribeiro</h3>
+        <span class="status-badge">● Aberto agora</span>
     </div>
 
-    <main>
-        <section class="hero">
-            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=200&auto=format&fit=crop" alt="Foto Perfil" class="avatar">
-            <h2>Fran Ribeiro</h2>
-            <p>Especialista em realçar sua beleza natural.</p>
-        </section>
+    <div class="section-header">
+        <i class="ri-scissors-cut-fill"></i>
+        <h2>Menu de Serviços</h2>
+    </div>
+    <div id="services-target" class="services-container"></div>
 
-        <h3 class="section-title">Resultados Recentes</h3>
-        <div class="gallery-scroll">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=600&auto=format&fit=crop"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588510884638-a28a2a7b8e1f?q=80&w=600&auto=format&fit=crop"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop"></div>
-        </div>
+    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 30px 20px;">
 
-        <h3 class="section-title">Menu de Serviços</h3>
-        <div id="app-services-container" class="services-wrapper"></div>
+    <div class="section-header">
+        <i class="ri-image-2-fill"></i>
+        <h2>Nossos Resultados</h2>
+    </div>
+    <div id="gallery-target" class="gallery-grid"></div>
 
-        <p style="text-align: center; font-size: 0.7rem; color: #555; margin-top: 20px;">
-            * Valores sujeitos a avaliação capilar.
-        </p>
-    </main>
+    <div style="height: 50px;"></div>
 
-    <a href="https://wa.me/5568999140967" class="bottom-cta">
-        <i class="ri-whatsapp-fill"></i> Agendar Horário
+    <a href="https://wa.me/5568999140967" class="fab-btn">
+        <i class="ri-whatsapp-fill" style="font-size: 1.4rem;"></i> Agendar Horário
     </a>
 
-    <script>
-        // 1. Controle do Menu (Toggle)
-        function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
+    <div id="lightbox-modal" class="lightbox" onclick="closeLightbox()">
+        <div class="close-lightbox">&times;</div>
+        <img id="lightbox-img" src="" alt="Zoom Foto">
+    </div>
 
-        // 2. Base de Dados (Arrays de Objetos)
-        const appData = [
+    <script>
+        // ======================================================
+        // 1. ARRAY DE SERVIÇOS (EDITE AQUI OS PREÇOS E TEXTOS)
+        // ======================================================
+        const servicesData = [
             {
-                category: "Tratamentos Capilares",
-                items: [
-                    { name: "Botox Capilar", price: 110.00, desc: "Redução de volume e brilho" },
-                    { name: "Selagem", price: 150.00, desc: "Alinhamento perfeito dos fios" },
-                    { name: "Escova + Hidratação", price: 50.00, desc: "Finalização e nutrição" }
-                ]
+                id: 1,
+                name: "Botox Capilar",
+                desc: "Tratamento profundo para redução de volume e reposição de massa.",
+                time: "2h 30min",
+                price: 110.00,
+                icon: "ri-magic-line" // Ícone de varinha mágica
             },
             {
-                category: "Design do Olhar",
-                items: [
-                    { name: "Design Simples", price: 25.00, desc: "Limpeza e desenho" },
-                    { name: "Design com Henna", price: 35.00, desc: "Definição e preenchimento" }
-                ]
+                id: 2,
+                name: "Selagem Térmica",
+                desc: "Alinhamento perfeito dos fios, brilho intenso e zero frizz.",
+                time: "3h",
+                price: 150.00,
+                icon: "ri-fire-line" // Ícone de fogo/calor
+            },
+            {
+                id: 3,
+                name: "Escova + Hidratação",
+                desc: "Finalização completa com produtos premium de nutrição.",
+                time: "45min",
+                price: 50.00,
+                icon: "ri-drop-line" // Ícone de gota
+            },
+            {
+                id: 4,
+                name: "Design de Sobrancelha",
+                desc: "Mapeamento facial para encontrar o formato ideal para seu rosto.",
+                time: "30min",
+                price: 25.00,
+                icon: "ri-eye-line" // Ícone de olho
+            },
+            {
+                id: 5,
+                name: "Design com Henna",
+                desc: "Design completo com pigmentação natural e maior durabilidade.",
+                time: "45min",
+                price: 35.00,
+                icon: "ri-brush-line" // Ícone de pincel
             }
         ];
 
-        // Formatador de Moeda
-        const toBRL = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        // ======================================================
+        // 2. ARRAY DA GALERIA (ADICIONE SUAS FOTOS AQUI)
+        // ======================================================
+        const galleryData = [
+            // Copie a linha abaixo e mude o link para adicionar mais fotos
+            "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?q=80&w=600&auto=format&fit=crop",
+            // Deixei espaço aqui para você adicionar as suas:
+            // "link_da_sua_foto_5.jpg",
+            // "link_da_sua_foto_6.jpg",
+        ];
 
-        // 3. Renderização Otimizada (Fragment)
-        function renderApp() {
-            const container = document.getElementById('app-services-container');
+        // Função de Formatar Dinheiro
+        const formatBRL = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        // ======================================================
+        // 3. RENDERIZAÇÃO DE SERVIÇOS (Fragment)
+        // ======================================================
+        function renderServices() {
+            const container = document.getElementById('services-target');
             const fragment = document.createDocumentFragment();
 
-            appData.forEach(group => {
-                // Título da Categoria
-                const groupTitle = document.createElement('div');
-                groupTitle.className = 'category-group';
+            servicesData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
                 
-                // HTML interno da categoria (Apenas título visual, ou separador)
-                // Neste design mobile, vamos focar nos cards, mas podemos adicionar um subtítulo se quiser.
-                // Aqui vou adicionar os itens direto para ficar clean, mas respeitando o grupo.
-
-                group.items.forEach(service => {
-                    const card = document.createElement('div');
-                    card.className = 'service-card';
-                    
-                    // Simulação de clique
-                    card.onclick = () => {
-                        // Feedback visual ou ação futura
-                        console.log(`Clicou em ${service.name}`);
-                    };
-
-                    card.innerHTML = `
-                        <div class="service-info">
-                            <span class="s-name">${service.name}</span>
-                            <span class="s-desc">${service.desc}</span>
+                // HTML interno do Card Detalhado
+                card.innerHTML = `
+                    <div class="icon-box">
+                        <i class="${item.icon}"></i>
+                    </div>
+                    <div class="card-details">
+                        <div class="card-title">${item.name}</div>
+                        <div class="card-desc">${item.desc}</div>
+                        <div class="card-meta">
+                            <span><i class="ri-time-line"></i> ${item.time}</span>
                         </div>
-                        <div class="price-badge">
-                            ${toBRL(service.price)}
-                        </div>
-                    `;
-                    
-                    // Adiciona o card ao fragmento
-                    fragment.appendChild(card);
-                });
+                    </div>
+                    <div class="price-tag">
+                        ${formatBRL(item.price)}
+                    </div>
+                `;
+
+                fragment.appendChild(card);
             });
 
             container.appendChild(fragment);
         }
 
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', renderApp);
+        // ======================================================
+        // 4. RENDERIZAÇÃO DA GALERIA (Fragment + Click Event)
+        // ======================================================
+        function renderGallery() {
+            const container = document.getElementById('gallery-target');
+            const fragment = document.createDocumentFragment();
+
+            galleryData.forEach(imgUrl => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                img.alt = "Resultado Fran Ribeiro";
+                
+                // Evento de Clique para abrir Lightbox
+                item.onclick = () => openLightbox(imgUrl);
+
+                item.appendChild(img);
+                fragment.appendChild(item);
+            });
+
+            container.appendChild(fragment);
+        }
+
+        // ======================================================
+        // 5. LÓGICA DO LIGHTBOX (ABRIR/FECHAR FOTO)
+        // ======================================================
+        const lightbox = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(url) {
+            lightboxImg.src = url;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            // Limpa o src após fechar para economizar memória (opcional)
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+        }
+
+        // Inicializar App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServices();
+            renderGallery();
+        });
 
     </script>
 </body>
 </html>
- 
