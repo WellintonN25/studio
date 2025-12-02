@@ -1,22 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Fran Ribeiro</title>
+    <title>Studio Fran Ribeiro - Beleza Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- RESET E VARIÁVEIS --- */
+        /* --- VARIÁVEIS E RESET --- */
         :root {
-            --bg-color: #0a0a0a; /* Fundo quase preto */
-            --text-color: #f0f0f0;
-            --gold-color: #d4af37; /* Dourado do flyer */
-            --gold-light: #f3e5ab;
-            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --bg-dark: #0f0f12;
+            --bg-card: rgba(255, 255, 255, 0.05); /* Efeito Vidro */
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            /* Degradê Dourado Vibrante */
+            --gold-gradient: linear-gradient(135deg, #FFD700, #FF8C00); 
+            --gold-bright: #FFD700;
         }
 
         * {
@@ -26,262 +27,368 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
-                              radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND DINÂMICO (LUZES) --- */
+        .ambient-light {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .light-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+        }
+        .orb-1 {
+            top: -10%; left: -10%; width: 400px; height: 400px;
+            background: var(--gold-bright);
+        }
+        .orb-2 {
+            bottom: 10%; right: -10%; width: 300px; height: 300px;
+            background: #FF8C00;
         }
 
         /* --- CONTAINER PRINCIPAL --- */
         .container {
-            max-width: 600px; /* Estilo mobile/flyer */
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #111;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            padding: 40px 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER MODERNO --- */
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: #fff;
-        }
-
-        h1 span {
-            display: block;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        /* --- SEÇÃO DE TÍTULO SERVIÇOS --- */
-        .hero-title {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .cta-box {
-            border: 1px solid var(--gold-color);
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 50px;
+        .brand-subtitle {
             text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- SEÇÃO DE TÍTULO "SERVIÇOS" --- */
+        .section-title-wrapper {
+            position: relative;
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px 0;
+        }
+        /* Texto "Serviços" gigante ao fundo */
+        .bg-title-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 8rem;
+            opacity: 0.07;
+            color: var(--gold-bright);
+            z-index: -1;
+            white-space: nowrap;
+        }
+        .section-badge {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--bg-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
             font-size: 0.8rem;
-            letter-spacing: 1px;
+            text-transform: uppercase;
             margin-bottom: 10px;
-            color: var(--gold-light);
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
         }
 
-        .hero-title h2 {
-            font-family: 'Great Vibes', cursive; /* Fonte manuscrita do 'serviços' */
-            font-size: 4rem;
-            color: var(--gold-color);
-            line-height: 1;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        /* --- CARDS DE SERVIÇOS (GLASSMORPHISM) --- */
+        .services-grid {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
-        /* --- LISTA DE SERVIÇOS --- */
-        .services-container {
-            margin-bottom: 30px;
+        /* Estilo "Vidro" para os cards */
+        .service-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .service-card:hover {
+            border-color: var(--gold-bright);
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .service-list {
             list-style: none;
         }
-
         .service-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
+        .service-item:last-child {
+            border-bottom: none;
+        }
         .service-name {
-            font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 400;
         }
-
         .service-price {
             font-weight: 700;
-            color: var(--gold-color);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .disclaimer {
             text-align: center;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin: 20px 0;
-            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: -10px;
+            margin-bottom: 40px;
         }
 
-        /* --- GALERIA DE IMAGENS --- */
-        .gallery {
-            display: flex;
+        /* --- GALERIA MODERNA --- */
+        .gallery-modern {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
             gap: 15px;
-            margin-bottom: 30px;
+            height: 300px;
+            margin-bottom: 40px;
         }
-
-        .img-card {
-            flex: 1;
-            height: 250px;
-            border-radius: 20px; /* Bordas arredondadas como no flyer */
+        .gallery-item {
+            border-radius: 20px;
             overflow: hidden;
-            border: 2px solid var(--gold-color);
             position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-
-        .img-card img {
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        /* Overlay dourado ao passar o mouse */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(255, 215, 0, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover::after {
+            opacity: 1;
         }
 
-        .img-card:hover img {
-            transform: scale(1.05);
-        }
 
-        /* --- BOTÃO WHATSAPP --- */
-        .whatsapp-btn {
-            background: var(--gold-gradient);
-            color: #000;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.2rem;
+        /* --- BOTÃO WHATSAPP VIBRANTE --- */
+        .cta-container {
+            margin-top: auto;
+        }
+        .whatsapp-btn-modern {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin-top: auto; /* Empurra para o fim */
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transition: transform 0.2s;
+            gap: 15px;
+            padding: 18px 30px;
+            background: var(--gold-gradient);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-btn-modern:hover {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            transform: scale(1.02);
         }
 
-        .whatsapp-btn:active {
-            transform: scale(0.98);
+        /* Efeito de brilho passando no botão */
+        .whatsapp-btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        .whatsapp-btn-modern:hover::before {
+            left: 100%;
         }
 
-        /* Detalhe de poeira dourada (background elements) */
-        .gold-dust {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
-            z-index: -1;
+        /* Responsividade para Mobile */
+        @media (max-width: 600px) {
+             /* No mobile, o título gigante atrapalha, diminuímos */
+            .bg-title-text { font-size: 5rem; }
+            h1 { font-size: 2rem; }
+            .gallery-modern { grid-template-columns: 1fr; height: auto; }
+            .gallery-item { height: 200px; }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="gold-dust"></div>
+    <div class="ambient-light">
+        <div class="light-orb orb-1"></div>
+        <div class="light-orb orb-2"></div>
+    </div>
 
     <div class="container">
         <header>
-            <h1>Studio <span>Fran Ribeiro</span></h1>
+            <span class="brand-subtitle">Studio</span>
+            <h1>Fran Ribeiro</h1>
         </header>
 
-        <div class="hero-title">
-            <span class="cta-box">Conheça os nossos</span>
-            <h2>serviços</h2>
+        <div class="section-title-wrapper">
+            <span class="bg-title-text">Serviços</span>
+            <span class="section-badge">Menu exclusivo</span>
+            <h2>Nossos Procedimentos</h2>
         </div>
 
-        <div id="services-wrapper" class="services-container"></div>
+        <div id="services-wrapper" class="services-grid"></div>
+        
+        <p class="disclaimer">
+            *(valor pode variar conforme o volume e a estrutura do fio)
+        </p>
 
-        <div class="gallery">
-            <div class="img-card">
-                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=2069&auto=format&fit=crop" alt="Cabelo Liso">
+        <div class="gallery-modern">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=2069&auto=format&fit=crop" alt="Cabelo Liso e Brilhante">
             </div>
-            <div class="img-card" style="height: 180px; align-self: flex-end;">
-                <img src="https://images.unsplash.com/photo-1588510884638-a28a2a7b8e1f?q=80&w=2070&auto=format&fit=crop" alt="Design de Sobrancelha">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1588510884638-a28a2a7b8e1f?q=80&w=2070&auto=format&fit=crop" alt="Design de Sobrancelha Perfeito">
             </div>
         </div>
 
-        <a href="https://wa.me/5568999140967" class="whatsapp-btn" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            (68) 99914-0967
-        </a>
+        <div class="cta-container">
+            <a href="https://wa.me/5568999140967" class="whatsapp-btn-modern" target="_blank">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382C17.284 14.382 16.909 14.288 16.535 14.007C16.16 13.726 15.692 13.257 15.13 12.789C14.568 12.321 14.193 12.04 14.005 11.946C13.818 11.853 13.583 11.9 13.302 12.087C13.021 12.274 12.553 12.837 11.897 13.774C11.241 14.711 10.867 14.992 10.773 14.617C10.679 14.243 10.07 13.493 8.945 12.368C7.821 11.243 7.071 10.634 6.696 10.54C6.321 10.447 6.602 10.072 7.539 9.416C8.476 8.76 9.038 8.292 9.226 8.011C9.413 7.73 9.46 7.496 9.366 7.308C9.272 7.121 8.991 6.746 8.523 6.184C8.054 5.622 7.586 5.153 7.117 4.779C6.648 4.404 6.273 4.217 5.992 4.217C5.711 4.217 5.336 4.357 4.868 4.638C4.399 4.919 3.837 5.341 3.181 5.903C2.525 6.465 2.197 7.215 2.197 8.152C2.197 9.089 2.525 10.494 3.181 12.368C3.837 14.242 5.243 16.304 7.398 18.553C9.554 20.802 11.709 22.114 13.865 22.489C16.021 22.864 17.519 22.208 18.362 20.521C19.206 18.834 19.393 17.616 18.925 16.866C18.456 16.116 17.659 14.382 17.472 14.382Z" fill="#0f0f12"/>
+                </svg>
+                Agendar Horário
+            </a>
+        </div>
     </div>
 
     <script>
-        // 1. Array de Objetos com os dados do Flyer
-        const servicesData = [
-            { id: 1, name: "Botox (a partir)", price: 110.00 },
-            { id: 2, name: "Selagem (a partir)", price: 150.00 },
-            { id: 3, name: "Escova e Hidratação", price: 50.00 },
-            // Separador visual ou apenas continuação da lista
-            { id: 4, name: "Design de Sobrancelhas", price: 25.00 },
-            { id: 5, name: "Design com Henna", price: 35.00 }
+        // 1. Dados Estruturados (Agrupados por Categoria para o novo layout)
+        // Mantivemos os mesmos dados, apenas organizamos melhor.
+        const servicesCategories = [
+            {
+                title: "Cabelos & Tratamentos",
+                icon: "✨",
+                items: [
+                    { id: 1, name: "Botox (a partir)", price: 110.00 },
+                    { id: 2, name: "Selagem (a partir)", price: 150.00 },
+                    { id: 3, name: "Escova e Hidratação", price: 50.00 }
+                ]
+            },
+            {
+                title: "Sobrancelhas & Olhar",
+                icon: "👁️",
+                items: [
+                    { id: 4, name: "Design de Sobrancelhas", price: 25.00 },
+                    { id: 5, name: "Design com Henna", price: 35.00 }
+                ]
+            }
         ];
 
-        const disclaimerText = "(valor pode variar conforme o volume e a estrutura do fio)";
-
-        // Função para formatar moeda
+        // Função utilitária para formatar moeda
         const formatCurrency = (value) => {
             return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         };
 
-        // 2. Função principal de renderização
-        function renderServices() {
+        // 2. Função Principal de Renderização
+        function renderModernServices() {
             const container = document.getElementById('services-wrapper');
-            
-            // Criação do DocumentFragment (Melhor performance)
             const fragment = document.createDocumentFragment();
 
-            // Criar a lista UL
-            const ul = document.createElement('ul');
-            ul.className = 'service-list';
+            // Loop pelas categorias
+            servicesCategories.forEach(category => {
+                // Cria o Card Principal da categoria
+                const card = document.createElement('div');
+                card.className = 'service-card';
 
-            // Loop pelo Array de dados
-            servicesData.forEach(service => {
-                const li = document.createElement('li');
-                li.className = 'service-item';
+                // Título do Card
+                const cardTitle = document.createElement('h3');
+                cardTitle.className = 'card-title';
+                cardTitle.innerHTML = `<span>${category.icon}</span> ${category.title}`;
+                card.appendChild(cardTitle);
 
-                // HTML interno do item
-                li.innerHTML = `
-                    <span class="service-name">• ${service.name}</span>
-                    <span class="service-price">${formatCurrency(service.price)}</span>
-                `;
+                // Lista UL dentro do card
+                const ul = document.createElement('ul');
+                ul.className = 'service-list';
 
-                // Adicionar LI na UL
-                ul.appendChild(li);
+                // Loop pelos itens dentro da categoria
+                category.items.forEach(service => {
+                    const li = document.createElement('li');
+                    li.className = 'service-item';
+                    li.innerHTML = `
+                        <span class="service-name">${service.name}</span>
+                        <span class="service-price">${formatCurrency(service.price)}</span>
+                    `;
+                    ul.appendChild(li);
+                });
+
+                card.appendChild(ul);
+                // Adiciona o card completo ao fragmento
+                fragment.appendChild(card);
             });
 
-            // Adicionar UL ao fragmento
-            fragment.appendChild(ul);
-
-            // Adicionar o aviso legal (Disclaimer) ao fragmento
-            const disclaimerP = document.createElement('p');
-            disclaimerP.className = 'disclaimer';
-            disclaimerP.textContent = disclaimerText;
-            fragment.appendChild(disclaimerP);
-
-            // 3. Inserção final no DOM (apenas uma manipulação)
+            // 3. Inserção única no DOM
             container.appendChild(fragment);
         }
 
-        // Executar quando a página carregar
-        document.addEventListener('DOMContentLoaded', renderServices);
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', renderModernServices);
 
     </script>
 </body>
