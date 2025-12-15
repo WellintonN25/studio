@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Fran Ribeiro App</title>
-    
+    <title>Studio Lumina - Beauty App</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@
             box-shadow: -5px 0 30px rgba(0,0,0,0.5);
         }
         .sidebar.active { transform: translateX(0); }
-        
+
         .sidebar-header { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .close-btn { font-size: 1.5rem; }
 
@@ -91,7 +91,7 @@
         /* --- HOME STYLES --- */
         .hero { text-align: center; margin-bottom: 30px; padding: 0 20px; }
         .avatar { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary); padding: 3px; object-fit: cover; margin-bottom: 15px; }
-        
+
         .about-box {
             background: var(--surface);
             margin: 0 20px 30px 20px;
@@ -112,7 +112,7 @@
             position: relative;
         }
         .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(100%) invert(92%) contrast(83%); }
-        
+
         .address-card {
             margin: 0 20px;
             display: flex; gap: 15px; align-items: center;
@@ -159,7 +159,7 @@
 <body>
 
     <header>
-        <div class="logo">Studio <span>Fran</span></div>
+        <div class="logo">Studio <span>Lumina</span></div>
         <div class="menu-btn" onclick="toggleMenu()"><i class="ri-menu-4-line"></i></div>
     </header>
 
@@ -169,7 +169,7 @@
             <span class="logo">Menu</span>
             <div class="close-btn" onclick="toggleMenu()"><i class="ri-close-line"></i></div>
         </div>
-        
+
         <div class="nav-item active" onclick="switchView('home')">
             <i class="ri-home-line"></i> Início
         </div>
@@ -179,7 +179,7 @@
         <div class="nav-item" onclick="switchView('gallery')">
             <i class="ri-image-line"></i> Galeria de Fotos
         </div>
-        <a href="https://wa.me/5568999140967" class="nav-item">
+        <a href="https://wa.me/5500000000000" class="nav-item">
             <i class="ri-whatsapp-line"></i> Contato Direto
         </a>
     </div>
@@ -187,8 +187,8 @@
     <section id="view-home" class="view-section active-view">
         <div class="hero">
             <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=200&auto=format&fit=crop" class="avatar">
-            <h2>Fran Ribeiro</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Beleza e Autoestima</p>
+            <h2>Studio Lumina</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Realçando sua Beleza</p>
         </div>
 
         <div class="about-box">
@@ -200,9 +200,9 @@
         </div>
 
         <h3 style="margin: 0 20px 10px 20px; font-size: 1rem;">Nossa Localização</h3>
-        
+
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31676.85579997637!2d-68.7661284!3d-11.0087455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915835ab132f8155%3A0xc0787e97424072f4!2sBrasil%C3%A9ia%2C%20AC!5e0!3m2!1spt-BR!2sbr!4v1701540000000!5m2!1spt-BR!2sbr" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153169!3d-37.81732767975195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d6a32f75e20!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1606112345678!5m2!1sen!2sau" loading="lazy"></iframe>
         </div>
 
         <div class="address-card">
@@ -210,8 +210,8 @@
             <div>
                 <strong style="color: #fff; display: block;">Endereço:</strong>
                 <span style="font-size: 0.85rem; color: var(--text-muted);">
-                    Av. Exemplo Fictício, 123<br>
-                    Centro - Brasiléia, AC
+                    Rua das Flores, 100 - Centro<br>
+                    Cidade Modelo
                 </span>
             </div>
         </div>
@@ -227,39 +227,41 @@
         <div id="gallery-target" class="gallery-grid"></div>
     </section>
 
-
-    <a href="https://wa.me/5568999140967" class="fab">
+    <a href="https://wa.me/5500000000000" class="fab">
         <i class="ri-whatsapp-fill"></i> Agendar Horário
     </a>
 
     <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
-        <div class="close-lb">&times;</div>
+        <div class="close-lb">×</div>
         <img id="lb-img" src="">
     </div>
 
 
     <script>
         /* --- 1. CONFIGURAÇÃO DE NAVEGAÇÃO SPA --- */
-        function switchView(viewName) {
+        
+        // Mantive as funções como declarações clássicas para garantir que o onclick do HTML funcione globalmente
+        const switchView = (viewName) => {
             // 1. Esconde todas as sections
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active-view'));
-            
+
             // 2. Mostra a section escolhida
             document.getElementById('view-' + viewName).classList.add('active-view');
-            
+
             // 3. Atualiza destaque no menu
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            // (Logica simples para adicionar active no item clicado - visual apenas)
-            event.currentTarget.classList.add('active');
-
-            // 4. Fecha o menu
-            toggleMenu();
             
-            // 5. Scroll para o topo
+            // Adiciona classe active no item clicado (se existir evento)
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            // 4. Fecha o menu e rola pro topo
+            toggleMenu();
             window.scrollTo(0,0);
         }
 
-        function toggleMenu() {
+        const toggleMenu = () => {
             document.getElementById('sidebar').classList.toggle('active');
             document.querySelector('.overlay').classList.toggle('active');
         }
@@ -284,11 +286,11 @@
 
         /* --- 3. RENDERIZAÇÃO (FRAGMENT) --- */
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             // Render Serviços
             const sContainer = document.getElementById('services-target');
             const sFrag = document.createDocumentFragment();
-            
+
             services.forEach(item => {
                 const el = document.createElement('div');
                 el.className = 'service-card';
